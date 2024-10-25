@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Profile</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body class="bg-light">
+    <div class="container mt-5">
+        <h2 class="text-center mb-4">Profile</h2>
+        <div class="card shadow p-4">
+            <form method="POST" action="{{ url_for('update_profile') }}">
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" value="{{ user.email }}" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="new_password">New Password (leave blank to keep current):</label>
+                    <input type="password" id="new_password" name="new_password" class="form-control">
+                </div>
+                <button type="submit" class="btn btn-primary btn-block">Update Profile</button>
+            </form>
+            {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    <div class="alert alert-success mt-3" role="alert">
+                        {% for message in messages %}
+                            {{ message }}
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            {% endwith %}
+        </div>
+    </div>
+</body>
+</html>

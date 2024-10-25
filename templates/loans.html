@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Loans</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body class="bg-light">
+    <div class="container mt-5">
+        <h2 class="text-center mb-4">Your Active Loans</h2>
+        <ul class="list-group mb-4">
+            {% for loan in loans %}
+                <li class="list-group-item">
+                    Loan Amount: ${{ loan.amount }} - Due Date: {{ loan.due_date }}
+                </li>
+            {% endfor %}
+        </ul>
+        <div class="card shadow-sm">
+            <div class="card-body">
+                <form method="POST" action="{{ url_for('apply_loan') }}">
+                    <div class="form-group">
+                        <label for="amount">Loan Amount:</label>
+                        <input type="number" id="amount" name="amount" class="form-control" step="0.01" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="due_date">Due Date:</label>
+                        <input type="date" id="due_date" name="due_date" class="form-control" required>
+                    </div>
+                    <button type="submit" class="btn btn-warning btn-block">Apply for Loan</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
